@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alpinejs</title>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+<body>
+  <div class="counter-widget">
+    <button id="decrement">-</button>
+    <span id="counter">0</span>
+    <button id="increment">+</button>
+  </div>
+
+  <div x-data="{ countdown: 60 }"
+       x-init="
+         let interval = setInterval(function() {
+           if (countdown > 0) {
+             countdown--;
+           } else {
+             clearInterval(interval);
+           }
+         }, 1000);
+       ">
+    <h1 x-text="countdown"></h1>
+  </div>
+
+
+  <div x-data="{ show: false }">
+    <button @click="show=!show">Show me</button>
+    <div x-show="show">you saw me</div>
+</div>
+
+
+
+<div x-data="{spiller : 'handsome'}">
+  <template x-if = "spiller=='handsome'">
+    <p>Spiller is Handsome</p>
+  </template>
+  <template x-if="spiller =='ugly'">
+    <p>Spiller is ugly</p>
+  </template>
+  <button @click="spiller = 'ugly'">He is?</button>
+
+</div>
+
+
+<div x-data="{ spillers exes: ['sike', 'hade', 'sorry'] }">
+  <p>Spillers Sneaky Links</p>
+    <ul>
+      <template x-for="their names">
+        <li x-text="their names"></li>
+      </template>
+    </ul>
+</div>
+
+
+
+
+<script src="index.js"></script>
+<script src="counter.js"></script>
+</body>
+</html>
